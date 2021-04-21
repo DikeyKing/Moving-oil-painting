@@ -13,6 +13,8 @@
 		3C76D37B2630038900A09761 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C76D3792630038900A09761 /* Main.storyboard */; };
 		3C76D37D2630038A00A09761 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3C76D37C2630038A00A09761 /* Assets.xcassets */; };
 		3C76D3802630038A00A09761 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C76D37E2630038A00A09761 /* LaunchScreen.storyboard */; };
+		3C76D38D26300B7F00A09761 /* UIImage+Gif.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C76D38C26300B7F00A09761 /* UIImage+Gif.swift */; };
+		3C76D393263012F900A09761 /* Starry Night.gif in Resources */ = {isa = PBXBuildFile; fileRef = 3C76D392263012F900A09761 /* Starry Night.gif */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		3C76D37C2630038A00A09761 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3C76D37F2630038A00A09761 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3C76D3812630038A00A09761 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3C76D38C26300B7F00A09761 /* UIImage+Gif.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Gif.swift"; sourceTree = "<group>"; };
+		3C76D392263012F900A09761 /* Starry Night.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "Starry Night.gif"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +60,8 @@
 		3C76D3722630038900A09761 /* MovingOilPainting */ = {
 			isa = PBXGroup;
 			children = (
+				3C76D391263012F900A09761 /* Resouces */,
+				3C76D38B26300B7F00A09761 /* Extensions */,
 				3C76D3732630038900A09761 /* AppDelegate.swift */,
 				3C76D3752630038900A09761 /* SceneDelegate.swift */,
 				3C76D3772630038900A09761 /* ViewController.swift */,
@@ -65,6 +71,22 @@
 				3C76D3812630038A00A09761 /* Info.plist */,
 			);
 			path = MovingOilPainting;
+			sourceTree = "<group>";
+		};
+		3C76D38B26300B7F00A09761 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				3C76D38C26300B7F00A09761 /* UIImage+Gif.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		3C76D391263012F900A09761 /* Resouces */ = {
+			isa = PBXGroup;
+			children = (
+				3C76D392263012F900A09761 /* Starry Night.gif */,
+			);
+			path = Resouces;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -127,6 +149,7 @@
 				3C76D3802630038A00A09761 /* LaunchScreen.storyboard in Resources */,
 				3C76D37D2630038A00A09761 /* Assets.xcassets in Resources */,
 				3C76D37B2630038900A09761 /* Main.storyboard in Resources */,
+				3C76D393263012F900A09761 /* Starry Night.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -139,6 +162,7 @@
 			files = (
 				3C76D3782630038900A09761 /* ViewController.swift in Sources */,
 				3C76D3742630038900A09761 /* AppDelegate.swift in Sources */,
+				3C76D38D26300B7F00A09761 /* UIImage+Gif.swift in Sources */,
 				3C76D3762630038900A09761 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -289,6 +313,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = PTU6M56T7V;
 				INFOPLIST_FILE = MovingOilPainting/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -308,6 +333,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = PTU6M56T7V;
 				INFOPLIST_FILE = MovingOilPainting/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
