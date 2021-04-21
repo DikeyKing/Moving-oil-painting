@@ -19,6 +19,11 @@ class ViewController: UIViewController {
         sceneView.delegate = self
         sceneView.autoenablesDefaultLighting = true
         sceneView.automaticallyUpdatesLighting = true
+        sceneView.showsStatistics = true
+        
+//        let scene = SCNScene()
+//        sceneView.scene = scene
+//        sceneView.scene.rootNode.addChildNode(getNode(withImageName: "Starry Night"))
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -45,9 +50,11 @@ extension ViewController: ARSCNViewDelegate {
                 return
             }
             let overlayNode = self.getNode(withImageName: imageName)
-            overlayNode.opacity = 0
-            overlayNode.position.y = 0.2
-            node.addChildNode(overlayNode)
+//            overlayNode.opacity = 0
+//            overlayNode.position.y = 0.2
+                       
+            self.sceneView.scene.rootNode.addChildNode(overlayNode)
+//            node.addChildNode(overlayNode)
         }
     }
     
@@ -72,6 +79,10 @@ extension ViewController: ARSCNViewDelegate {
     
         node.geometry = gifPlane
         node.position = SCNVector3(0, 0, -1)
+        
+        let scaleFactor = 0.5
+        node.scale = SCNVector3(scaleFactor, scaleFactor, scaleFactor)
+//        node.eulerAngles.x = -.pi / 2
         
         return node
     }
