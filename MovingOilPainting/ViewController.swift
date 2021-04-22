@@ -20,10 +20,6 @@ class ViewController: UIViewController {
         sceneView.autoenablesDefaultLighting = true
         sceneView.automaticallyUpdatesLighting = true
         sceneView.showsStatistics = true
-        
-//        let scene = SCNScene()
-//        sceneView.scene = scene
-//        sceneView.scene.rootNode.addChildNode(getNode(withImageName: "Starry Night"))
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -48,51 +44,33 @@ class ViewController: UIViewController {
 
 extension ViewController: ARSCNViewDelegate {
     
-    func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
-        DispatchQueue.main.async {
-            guard let imageAnchor = anchor as? ARImageAnchor,
-                  let imageName = imageAnchor.referenceImage.name else{
-                return
-            }
-            let overlayNode = self.getNode(withImageName: imageName)
-//            overlayNode.opacity = 0
-//            overlayNode.position.y = 0.2
-            
-            print(node)
-            print(self.sceneView.scene.rootNode)
-
-            self.sceneView.scene.rootNode.addChildNode(overlayNode)
-           // node.addChildNode(overlayNode)
+    func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
+        guard let imageAnchor = anchor as? ARImageAnchor,
+              let imageName = imageAnchor.referenceImage.name else{
+            return nil
         }
+        let node = SCNNode()
+        DispatchQueue.main.async {
+            let gifPlane = SCNPlane(width: imageAnchor.referenceImage.physicalSize.width,
+                                    height: imageAnchor.referenceImage.physicalSize.height)
+            
+            let gifImage = UIImage.gifImageWithName(imageName)
+            assert(gifImage != nil, "getNode:nil image")
+            let gifImageView = UIImageView(image: gifImage)
+            gifPlane.firstMaterial?.diffuse.contents = gifImageView
+            
+            let planeNode = SCNNode(geometry: gifPlane)
+            planeNode.eulerAngles.x = -.pi / 2
+            node.addChildNode(planeNode)
+        }
+        return node
     }
-    
+
     func getPlaneNode(withReferenceImage image: ARReferenceImage) -> SCNNode {
         let plane = SCNPlane(width: image.physicalSize.width,
                              height: image.physicalSize.height)
         let node = SCNNode(geometry: plane)
         return node
     }
-    
-    func getNode(withImageName name: String) -> SCNNode {
-        
-        let node = SCNNode()
-        let gifPlane = SCNPlane(width: 1, height: 1)
-        
-        let gifImage = UIImage.gifImageWithName(name)
-        
-        assert(gifImage != nil, "getNode:nil image")
-        
-        let gifImageView = UIImageView(image: gifImage)
-        gifPlane.firstMaterial?.diffuse.contents = gifImageView
-    
-        node.geometry = gifPlane
-        node.position = SCNVector3(0, 0, -0.5)
-        
-        let scaleFactor = 0.5
-        node.scale = SCNVector3(scaleFactor, scaleFactor, scaleFactor)
-//        node.eulerAngles.x = -.pi / 2
-        
-        return node
-    }
-        
+
 }
