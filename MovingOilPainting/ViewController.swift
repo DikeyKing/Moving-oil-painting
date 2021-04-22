@@ -32,6 +32,11 @@ class ViewController: UIViewController {
         resetTrackingConfiguration()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        sceneView.session.pause()
+    }
+    
     func resetTrackingConfiguration() {
         guard let referenceImages = ARReferenceImage.referenceImages(inGroupNamed: "AR Resources", bundle: nil) else { return }
         let configuration = ARWorldTrackingConfiguration()
@@ -52,9 +57,12 @@ extension ViewController: ARSCNViewDelegate {
             let overlayNode = self.getNode(withImageName: imageName)
 //            overlayNode.opacity = 0
 //            overlayNode.position.y = 0.2
-                       
+            
+            print(node)
+            print(self.sceneView.scene.rootNode)
+
             self.sceneView.scene.rootNode.addChildNode(overlayNode)
-//            node.addChildNode(overlayNode)
+           // node.addChildNode(overlayNode)
         }
     }
     
@@ -78,7 +86,7 @@ extension ViewController: ARSCNViewDelegate {
         gifPlane.firstMaterial?.diffuse.contents = gifImageView
     
         node.geometry = gifPlane
-        node.position = SCNVector3(0, 0, -1)
+        node.position = SCNVector3(0, 0, -0.5)
         
         let scaleFactor = 0.5
         node.scale = SCNVector3(scaleFactor, scaleFactor, scaleFactor)
